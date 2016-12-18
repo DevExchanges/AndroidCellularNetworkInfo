@@ -9,22 +9,20 @@ import android.telephony.TelephonyManager;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    public static final int NETWORK_TYPE_EHRPD = 14; // Level 11
-    public static final int NETWORK_TYPE_EVDO_B = 12; // Level 9
-    public static final int NETWORK_TYPE_HSPAP = 15; // Level 13
-    public static final int NETWORK_TYPE_IDEN = 11; // Level 8
-    public static final int NETWORK_TYPE_LTE = 13; // Level 11
+    public static final int NETWORK_TYPE_EHRPD = 14; // API Level 11
+    public static final int NETWORK_TYPE_EVDO_B = 12; // API Level 9
+    public static final int NETWORK_TYPE_HSPAP = 15; // API Level 13
+    public static final int NETWORK_TYPE_IDEN = 11; // API Level 8
+    public static final int NETWORK_TYPE_LTE = 13; // API Level 11
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Locating the TextView and set data (network feature)
-        TextView tvNetworkInfo = (TextView) findViewById(R.id.network);
+        TextView networkInfo = (TextView) findViewById(R.id.network_type);
         String type = isConected(this);
-        tvNetworkInfo.setText(type);
-
+        networkInfo.setText(type);
     }
 
     /**
@@ -34,22 +32,19 @@ public class MainActivity extends AppCompatActivity {
      * @return
      */
     public static String isConected(Context context) {
-        ConnectivityManager cm = (ConnectivityManager) context
-                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo info = cm.getActiveNetworkInfo();
 
         if ((info != null && info.isConnected())) {
-            return isConnectionFast(info.getType(),
-                    info.getSubtype());
+            return checkingNetworkSpeed(info.getType(), info.getSubtype());
         } else
             return "No NetWork Access";
-
     }
 
     /**
      * Check speed of the connection
      */
-    public static String isConnectionFast(int type, int subType) {
+    public static String checkingNetworkSpeed(int type, int subType) {
         if (type == ConnectivityManager.TYPE_WIFI) {
             return "CONNECTED VIA WIFI";
         } else if (type == ConnectivityManager.TYPE_MOBILE) {

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CellularNetwork.iml" filepath="$PROJECT_DIR$/CellularNetwork.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AndroidCellularNetworkInfo.iml" filepath="$PROJECT_DIR$/AndroidCellularNetworkInfo.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
